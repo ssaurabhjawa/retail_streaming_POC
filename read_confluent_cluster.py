@@ -23,7 +23,7 @@ for data in fb:
     # Asynchronously produce a message, the delivery report callback
     # will be triggered from poll() above, or flush() below, when the message has
     # been successfully delivered or failed permanently.
-    p.produce('retail_topic_1', key="key", value="value", callback=delivery_report)
+    p.produce('retail_topic_1', key="key", value=data, callback=delivery_report)
     time.sleep(1)
 
 # Wait for any outstanding messages to be delivered and delivery report
