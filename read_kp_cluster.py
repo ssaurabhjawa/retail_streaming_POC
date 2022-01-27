@@ -1,10 +1,10 @@
 
-from kafka import KafkaProducer
+from confluent_kafka import Producer
 import time
 
 fb=open('/home/saurabh/part-00000')
 
-producer = KafkaProducer(bootstrap_servers=['cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092'],
+producer = Producer(bootstrap_servers=['cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092'],
                          api_version=(20, 2, 1),
                          value_serializer=lambda x:bytes(x,'utf-8'))
 producer.flush()
