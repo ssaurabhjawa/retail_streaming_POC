@@ -3,7 +3,7 @@ from kafka import KafkaConsumer
 
 consumer = KafkaConsumer(
     'retail_topic_1',
-     bootstrap_servers=['cdp01.itversity.com:2181,cdp02.itversity.com:2181,cdp03.itversity.com:2181/kafka'],
+     bootstrap_servers=['cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092'],
      api_version=(20, 2, 1),
      auto_offset_reset='latest',
      enable_auto_commit=True,
