@@ -1,5 +1,6 @@
 from confluent_kafka import Consumer
 from util import get_spark_session
+from pyspark.sql.functions import date_format, to_date, split, substring
 
 def kafka_consumer(env, appName):
     c = Consumer({
