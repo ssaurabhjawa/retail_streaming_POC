@@ -1,7 +1,7 @@
 from confluent_kafka import Consumer
 from util import get_spark_session
 
-def k_consumer(env, appName):
+def kafka_consumer(env, appName):
     c = Consumer({
         'bootstrap.servers': 'cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092',
         'group.id': 'mygroup',
@@ -28,6 +28,7 @@ def spark_consumer(env, appName):
         format('kafka'). \
         option('kafka.bootstrap.servers', kafka_bootstrap_servers). \
         option('subscribe', 'retail_topic_1'). \
+        option("startingOffsets", "earliest"). \
         load()
     df.selectExpr("CAST(key AS STRING) AS key", "CAST(value AS STRING) AS value").printSchema()
     df.printSchema()
