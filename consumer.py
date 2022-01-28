@@ -30,6 +30,21 @@ def spark_consumer(env, appName):
         option('subscribe', 'retail_topic_1'). \
         option("startingOffsets", "earliest"). \
         load()
+
+
+    df.selectExpr("CAST(value AS STRING)"). \
+        withColumn('log_date', to_date(substring(split('value', ' ')[3], 2, 21), '[dd/MMM/yyyy:HH:mm:ss')). \
+        withColumn('year', date_format('log_date', 'yyyy')). \
+        withColumn('month', date_format('log_date', 'MM')). \
+        withColumn('dayofmonth', date_format('log_date', 'dd')). \
+        writeStream. \
+        partitionBy('year', 'month', 'dayofmonth'). \
+        format('csv'). \
+        option("checkpointLocation", f'/user/{username}/kafka/retail_logs/gen_logs/checkpoint'). \
+        option('path', f'/user/{username}/kafka/retail_logs/gen_logs/data'). \
+        trigger(processingTime='30 seconds'). \
+        start()
+
     df.selectExpr("CAST(key AS STRING) AS key", "CAST(value AS STRING) AS value").printSchema()
     df.printSchema()
     df.show(truncate=False)
