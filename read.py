@@ -2,7 +2,6 @@ import os
 from confluent_kafka import Producer
 import time
 
-fb = open('/home/saurabh/part-00000')
 p = Producer({'bootstrap.servers': 'cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092'})
 
 
@@ -15,10 +14,9 @@ def delivery_report(err, msg):
         print('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
 def read_send_message(src_dir):
-    for data in fb:
-        # Trigger any available delivery report callbacks from previous produce() calls
-        p.poll(0)
         for entry in os.listdir(src_dir):
+            # Trigger any available delivery report callbacks from previous produce() calls
+            p.poll(0)
             file_dir = os.path.join(src_dir, entry)
             for filesInDir in os.listdir(file_dir):
                 table_folder = os.path.join(file_dir, filesInDir)
