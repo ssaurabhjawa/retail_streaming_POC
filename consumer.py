@@ -29,3 +29,6 @@ def spark_consumer(env, appName):
         option('kafka.bootstrap.servers', kafka_bootstrap_servers). \
         option('subscribe', 'retail_topic_1'). \
         load()
+
+    df.printSchema()
+    df.show(truncate=False)

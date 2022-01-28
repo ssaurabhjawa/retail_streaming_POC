@@ -1,5 +1,5 @@
 export PYSPARK_PYTHON=python3
-export ENVIRON = PROD
+export ENVIRON=PROD
 export SRC_DIR=/home/${user}/retail_db/
 export TGT_FOLDER=''
 export TGT_FILE_FORMAT=''
