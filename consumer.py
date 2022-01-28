@@ -1,7 +1,7 @@
 from confluent_kafka import Consumer
 from util import get_spark_session
 from pyspark.sql.functions import date_format, to_date, split, substring
-
+import getpass
 def kafka_consumer(env, appName):
     c = Consumer({
         'bootstrap.servers': 'cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092',
@@ -22,6 +22,7 @@ def kafka_consumer(env, appName):
     c.close()
 
 def spark_consumer(env, appName):
+    username = getpass.getuser()
     spark = get_spark_session(env, appName)
     kafka_bootstrap_servers = 'cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092'
     df = spark. \
