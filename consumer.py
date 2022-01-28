@@ -1,36 +1,31 @@
-import json
-from kafka import KafkaConsumer
+from confluent_kafka import Consumer
+from util import get_spark_session
 
+def k_consumer(env, appName):
+    c = Consumer({
+        'bootstrap.servers': 'cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092',
+        'group.id': 'mygroup',
+        'auto.offset.reset': 'earliest'
+    })
+    c.subscribe(['retail_topic_1'])
+    while True:
+        msg = c.poll(1.0)
 
+        if msg is None:
+            continue
+        if msg.error():
+            print("Consumer error: {}".format(msg.error()))
+            continue
 
-consumer = KafkaConsumer(
-    'retail_topic_1',
-     bootstrap_servers=['localhost:9092'],
-     auto_offset_reset='latest',
-     enable_auto_commit=True,
-     group_id='my-group',
-     value_deserializer=lambda x: x.decode('utf-8'))
+        print('Received message: {}'.format(msg.value().decode('utf-8')))
+    c.close()
 
-
-"""
-consumer = KafkaConsumer(
-    'retail_topic_1',
-     bootstrap_servers=['localhost:9092'],
-     auto_offset_reset='earliest',
-     enable_auto_commit=True,
-     value_deserializer=lambda x: json.loads(x.decode('utf-8')))
-consumer.subscribe(['retail_topic_1'])
-
-
-
-consumer = KafkaConsumer(
-    'retail_topic_1',
-     bootstrap_servers=['localhost:9092'],
-     auto_offset_reset='earliest',
-     enable_auto_commit=True,
-     value_deserializer=lambda x: loads(x.decode('utf-8')))
-"""
-for message in consumer:
-    message = message.value
-    print(message)
-
+def spark_consumer(env, appName):
+    spark = get_spark_session(env, appName)
+    kafka_bootstrap_servers = 'cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092'
+    df = spark. \
+        readStream. \
+        format('kafka'). \
+        option('kafka.bootstrap.servers', kafka_bootstrap_servers). \
+        option('subscribe', 'retail_topic_1'). \
+        load()
