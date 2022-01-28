@@ -1,6 +1,6 @@
 import os
 from read import read_send_message
-from consumer import spark_consumer, k_consumer
+from consumer import spark_consumer, kafka_consumer
 
 def main():
     env = os.environ.get('ENVIRON')
@@ -10,7 +10,7 @@ def main():
     tgt_file_format=os.environ.get('TGT_FILE_FORMAT')
     read_send_message(src_dir)
     spark_consumer(env, 'retail_streaming_consumer')
-    k_consumer(env, 'retail_k_consumer')
-git
+    kafka_consumer(env, 'retail_k_consumer')
+
 if __name__ == '__main__':
     main()
