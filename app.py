@@ -9,8 +9,8 @@ def main():
     tgt_dir=os.environ.get('TGT_DIR')
     tgt_file_format=os.environ.get('TGT_FILE_FORMAT')
     read_send_message(src_dir)
-    k_consumer(env, 'retail_k_consumer')
     spark_consumer(env, 'retail_streaming_consumer')
-
+    k_consumer(env, 'retail_k_consumer')
+git
 if __name__ == '__main__':
     main()
