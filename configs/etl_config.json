@@ -1,0 +1,2 @@
+# Kafka
+bootstrap.servers=cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092

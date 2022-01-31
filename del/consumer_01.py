@@ -14,3 +14,4 @@ for message in consumer:
     print(type(message))
     message1 = message.value
     print(message1)
+

@@ -2,7 +2,16 @@ import os
 from confluent_kafka import Producer
 import time
 
-p = Producer(configs['bootstrap.servers'])
+p = Producer({'bootstrap.servers': 'cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092'})
+
+
+def delivery_report(err, msg):
+    """ Called once for each message produced to indicate delivery result.
+        Triggered by poll() or flush(). """
+    if err is not None:
+        print('Message delivery failed: {}'.format(err))
+    else:
+        print('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
 def read_send_message(src_dir):
         for entry in os.listdir(src_dir):
@@ -16,7 +25,7 @@ def read_send_message(src_dir):
                     # Asynchronously produce a message, the delivery report callback
                     # will be triggered from poll() above, or flush() below, when the message has
                     # been successfully delivered or failed permanently.
-                    p.produce('retail_topic_1', key="key", value=line)
+                    p.produce('retail_topic_1', key="key", value=line, callback=delivery_report)
                     print(f'{line} is produced')
                     time.sleep(1)
 

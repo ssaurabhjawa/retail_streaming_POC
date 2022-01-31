@@ -16,7 +16,7 @@ def read_send_message(src_dir):
                 time.sleep(1)
             producer.flush()
 
-read_send_message('/Users/jai_dev/PycharmProjects/retail_poc/data/retail-topic/')
+read_send_message('/data/retail-topic/')
 
 
 """

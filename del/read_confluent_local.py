@@ -2,14 +2,9 @@
 from confluent_kafka import Producer
 import time
 
-fb=open('/home/saurabh/part-00000')
+fb=open('/data/test_data/part-00000')
 
-p = Producer({'bootstrap.servers': 'cdp03.itversity.com:9092,cdp04.itversity.com:9092,cdp05.itversity.com:9092'})
-
-for lines in fb:
-    producer.send('retail_topic_1', value=lines)
-    time.sleep(1)
-producer.flush()
+p = Producer({'bootstrap.servers': 'localhost:9092'})
 
 def delivery_report(err, msg):
     """ Called once for each message produced to indicate delivery result.
@@ -19,7 +14,7 @@ def delivery_report(err, msg):
     else:
         print('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
-for data in some_data_source:
+for data in fb:
     # Trigger any available delivery report callbacks from previous produce() calls
     p.poll(0)
 
@@ -27,6 +22,7 @@ for data in some_data_source:
     # will be triggered from poll() above, or flush() below, when the message has
     # been successfully delivered or failed permanently.
     p.produce('retail_topic_1', key="key", value="value", callback=delivery_report)
+    time.sleep(1)
 
 # Wait for any outstanding messages to be delivered and delivery report
 # callbacks to be triggered.

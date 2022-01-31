@@ -4,5 +4,12 @@ export ENVIRON=PROD
 export SRC_DIR=/home/${USER}/retail_json_data/
 export TGT_FOLDER=''
 export TGT_FILE_FORMAT=''
-python3 app.py
+spark-submit \
+--master yarn \
+--conf spark.ui.port=0 \
+--py-files packages.zip \
+--files configs/etl_config.json \
+jobs/app.py
+
+
 
