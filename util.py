@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 import getpass
+import configparser as cp
 
 def get_spark_session(env, appName):
     username = getpass.getuser()
@@ -26,7 +27,14 @@ def get_spark_session(env, appName):
         return spark
     return
 
-
+def get_config():
+    props = cp.ConfigParser()
+    props.read_file(open("src/main/resources/config.ini"))
+    config_dict = {}
+    for each_section in props.sections():
+        for (config_key, config_val) in props.items(each_section):
+            config_dict.update({config_key: config_val})
+    return config_dict
 
 
 
