@@ -20,29 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="946cb6e3-8f69-4a4a-a289-7c2d2e654639" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/configs/config.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configs/streaming_retail_data.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/etl_config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/consumer_01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/consumer_cluster.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/kafkaTest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/local_Test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/producer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/read-x.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/read_02.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/read_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/read_confluent_local.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/read_kp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/read_kp_cluster.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/read_local_01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/retail_j.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/textToJson.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/del/textTojson2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/read.py" beforeDir="false" afterPath="$PROJECT_DIR$/read.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/runme.sh" beforeDir="false" afterPath="$PROJECT_DIR$/runme.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
